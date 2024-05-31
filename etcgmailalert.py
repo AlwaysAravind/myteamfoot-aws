@@ -46,9 +46,14 @@ def send_failure_email(sender_email, sender_password, receiver_emails, failed_ur
 
 if __name__ == "__main__":
     # Your existing Selenium script goes here...
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    action = ActionChains(driver)
+    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')  # Add this line to avoid /dev/shm issues
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     driver.maximize_window()
+    action = ActionChains(driver)
 
     driver.get('https://www.equipetonclub.fr/connexion?back=my-account')
     loginmail = driver.find_element(By.ID, 'email')
