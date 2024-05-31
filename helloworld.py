@@ -38,10 +38,10 @@ def main():
 
     try:
         # Open a webpage
-        driver.get("https://myteam-foot.fr")
+        driver.get("https://google.com")
 
         # Perform a basic action
-        assert "Nike MyTeam Foot | tenues et packs pour club de foot - MyTeam Foot" in driver.title
+        assert "Google" in driver.title
 
         # Close the browser
         driver.quit()
