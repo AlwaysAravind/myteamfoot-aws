@@ -1,9 +1,7 @@
-from typing import Any
-
-import requests
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from typing import Any
 from selenium_imports import *
 import time
 
@@ -45,13 +43,13 @@ def send_failure_email(sender_email, sender_password, receiver_emails, failed_ur
 
 
 if __name__ == "__main__":
-    # Your existing Selenium script goes here...
-    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     options = Options()
     options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
+    options.add_argument('--no-sandbox')  # Add this line
     options.add_argument('--disable-dev-shm-usage')  # Add this line to avoid /dev/shm issues
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+    service = ChromeService(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     driver.maximize_window()
     action = ActionChains(driver)
 
